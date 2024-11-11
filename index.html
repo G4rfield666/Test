@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำถามเกี่ยวกับความสัมพันธ์</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: 2px solid #FF6347;
+            background-color: #fff;
+            color: #FF6347;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        button:hover {
+            background-color: #FF6347;
+            color: white;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>เป็นแฟนกันมั้ย?</h1>
+
+    <div class="button-container">
+        <button id="yes">เป็น</button>
+        <button id="not-fan">ไม่เป็น</button>
+    </div>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        // เมื่อกดปุ่ม "เป็น"
+        document.getElementById('yes').onclick = function () {
+            document.getElementById('result').innerText = "เย้! เราเป็นแฟนกันแล้ว ❤️";
+        };
+
+        // เมื่อกดปุ่ม "ไม่เป็น"
+        document.getElementById('not-fan').onclick = function () {
+            document.getElementById('result').innerText = "อ่า... น่าเสียดายจริงๆ 😔";
+        };
+
+        // ฟังก์ชันให้ปุ่ม "ไม่เป็น" ขยับออกไปเมื่อเมาส์เข้ามาใกล้ โดยไม่ให้หลุดขอบหน้าจอ
+        var notFanButton = document.getElementById('not-fan');
+        document.addEventListener('mousemove', function (event) {
+            var buttonRect = notFanButton.getBoundingClientRect();
+            var mouseX = event.clientX;
+            var mouseY = event.clientY;
+
+            // ตรวจสอบว่าตำแหน่งเมาส์อยู่ในระยะห่าง 150px จากปุ่มหรือไม่
+            var distanceX = Math.abs(mouseX - (buttonRect.left + buttonRect.width / 2));
+            var distanceY = Math.abs(mouseY - (buttonRect.top + buttonRect.height / 2));
+
+            if (distanceX < 100 && distanceY < 50) {
+                // คำนวณตำแหน่งใหม่โดยไม่ให้หลุดออกจากขอบหน้าจอ
+                var maxX = window.innerWidth - buttonRect.width;
+                var maxY = window.innerHeight - buttonRect.height;
+                var newX = Math.min(Math.max(0, buttonRect.left + (Math.random() - 0.5) * 300), maxX);
+                var newY = Math.min(Math.max(0, buttonRect.top + (Math.random() - 0.5) * 200), maxY);
+
+                notFanButton.style.position = "absolute";
+                notFanButton.style.left = newX + "px";
+                notFanButton.style.top = newY + "px";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
