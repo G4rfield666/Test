@@ -1,100 +1,67 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>คำถามเกี่ยวกับความสัมพันธ์</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            padding: 50px;
-        }
+    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: 2px solid #FF6347;
-            background-color: #fff;
-            color: #FF6347;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        button:hover {
-            background-color: #FF6347;
-            color: white;
-        }
-
-        .result {
-            margin-top: 30px;
-            font-size: 1.5em;
-        }
-    </style>
 </head>
 
 <body>
-
-    <h1>เป็นแฟนกันมั้ย?</h1>
-
-    <div class="button-container">
-        <button id="yes">เป็น</button>
-        <button id="not-fan">ไม่เป็น</button>
-    </div>
-
-    <div class="result" id="result"></div>
-
+    <!-- <button type="button" class="btn btn-primary" data-toggle="popover" title="ข้อมูลเพิ่มเติม"
+        data-content="นี่คือข้อความที่จะแสดงใน popover">คลิกเพื่อดูรายละเอียด</button>
     <script>
-        // เมื่อกดปุ่ม "เป็น"
-        document.getElementById('yes').onclick = function () {
-            document.getElementById('result').innerText = "เย้! เราเป็นแฟนกันแล้ว ❤️";
-        };
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
 
-        // เมื่อกดปุ่ม "ไม่เป็น"
-        document.getElementById('not-fan').onclick = function () {
-            document.getElementById('result').innerText = "อ่า... น่าเสียดายจริงๆ 😔";
-        };
+    </script> -->
 
-        // ฟังก์ชันให้ปุ่ม "ไม่เป็น" ขยับออกไปเมื่อเมาส์เข้ามาใกล้ โดยไม่ให้หลุดขอบหน้าจอ
-        var notFanButton = document.getElementById('not-fan');
-        document.addEventListener('mousemove', function (event) {
-            var buttonRect = notFanButton.getBoundingClientRect();
-            var mouseX = event.clientX;
-            var mouseY = event.clientY;
+    <!-- ปุ่มที่ใช้ popover -->
+    <button type="button" class="btn btn-primary" data-toggle="popover" data-trigger="hover" title="ข้อมูลเพิ่มเติม"
+        data-content="นี่คือข้อความที่จะแสดงใน popover">วางเมาส์เพื่อดูรายละเอียด</button>
 
-            // ตรวจสอบว่าตำแหน่งเมาส์อยู่ในระยะห่าง 150px จากปุ่มหรือไม่
-            var distanceX = Math.abs(mouseX - (buttonRect.left + buttonRect.width / 2));
-            var distanceY = Math.abs(mouseY - (buttonRect.top + buttonRect.height / 2));
-
-            if (distanceX < 100 && distanceY < 50) {
-                // คำนวณตำแหน่งใหม่โดยไม่ให้หลุดออกจากขอบหน้าจอ
-                var maxX = window.innerWidth - buttonRect.width;
-                var maxY = window.innerHeight - buttonRect.height;
-                var newX = Math.min(Math.max(0, buttonRect.left + (Math.random() - 0.5) * 300), maxX);
-                var newY = Math.min(Math.max(0, buttonRect.top + (Math.random() - 0.5) * 200), maxY);
-
-                notFanButton.style.position = "absolute";
-                notFanButton.style.left = newX + "px";
-                notFanButton.style.top = newY + "px";
-            }
+    <!-- JavaScript สำหรับเปิดใช้งาน popover -->
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
         });
     </script>
 
+<!-- ตารางพร้อม popover ในทุกเซลล์ -->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th data-toggle="popover" data-trigger="hover" title="ชื่อคอลัมน์" data-content="ชื่อสินค้า">ชื่อสินค้า</th>
+      <th data-toggle="popover" data-trigger="hover" title="ชื่อคอลัมน์" data-content="ราคาสินค้า">ราคา</th>
+      <th data-toggle="popover" data-trigger="hover" title="ชื่อคอลัมน์" data-content="รายละเอียดสินค้า">รายละเอียดเพิ่มเติม</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-toggle="popover" data-trigger="hover" title="สินค้า A" data-content="นี่คือสินค้า A">สินค้า A</td>
+      <td data-toggle="popover" data-trigger="hover" title="รหฟกาคา" data-content="100 บาท6666666666666666666666666666666666666666666666666">100 บาท</td>
+      <td data-toggle="popover" data-trigger="hover" title="รายละเอียด" data-content="รายละเอียดเพิ่มเติมเกี่ยวกับสินค้า A">รายละเอียดสินค้า A</td>
+    </tr>
+    <tr>
+      <td data-toggle="popover" data-trigger="hover" title="สินค้า B" data-content="นี่คือสินค้า B">สินค้า B</td>
+      <td data-toggle="popover" data-trigger="hover" title="ราคา" data-content="200 บาท">200 บาท</td>
+      <td data-toggle="popover" data-trigger="hover" title="รายละเอียด" data-content="รายละเอียดเพิ่มเติมเกี่ยวกับสินค้า B">รายละเอียดสินค้า B</td>
+    </tr>
+    <!-- เพิ่มแถวและเซลล์เพิ่มเติมได้ตามต้องการ -->
+  </tbody>
+</table>
+
+<!-- JavaScript สำหรับเปิดใช้งาน popover -->
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+  });
+</script>
 </body>
 
 </html>
